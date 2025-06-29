@@ -1,0 +1,3 @@
+# Compressor
+
+Losslessly optimize images.
