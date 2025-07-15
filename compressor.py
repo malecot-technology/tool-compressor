@@ -4,6 +4,27 @@ import argparse
 from pathlib import Path
 
 
+def optimize_pdf(filepath):
+    temp_file = Path(filepath).with_suffix(".opt.pdf")
+    cmd = [
+        "gs",
+        "-sDEVICE=pdfwrite",
+        "-dCompatibilityLevel=1.4",
+        "-dPDFSETTINGS=/prepress",
+        "-dNOPAUSE",
+        "-dQUIET",
+        "-dBATCH",
+        f"-sOutputFile={temp_file}",
+        str(filepath),
+    ]
+    subprocess.run(cmd, check=True)
+    if temp_file.stat().st_size < Path(filepath).stat().st_size:
+        temp_file.replace(filepath)
+    else:
+        temp_file.unlink()
+        print(f"{filepath} is already optimized.")
+
+
 def optimize_jpeg(filepath):
     temp_file = Path(filepath).with_suffix(".opt.jpg")
     cmd = [
@@ -38,8 +59,8 @@ def optimize_svg(filepath):
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Losslessly optimize images.")
-    parser.add_argument("files", nargs="+", help="List of images to optimize")
+    parser = argparse.ArgumentParser(description="Losslessly optimize images and documents.")
+    parser.add_argument("files", nargs="+", help="List of files to optimize")
     args = parser.parse_args()
     for filepath in args.files:
         ext = Path(filepath).suffix.lower()
@@ -49,6 +70,8 @@ def main():
             optimize_png(filepath)
         elif ext == ".svg":
             optimize_svg(filepath)
+        elif ext == ".pdf":
+            optimize_pdf(filepath)
         else:
             parser.error(f"Unsupported file type: {ext}.")
 

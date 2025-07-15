@@ -1,15 +1,15 @@
 # Compressor
 
 **Compressor** is a command-line tool for losslessly optimizing common image formats including JPEG,
-PNG, and SVG. It uses best-in-class utilities (`jpegtran`, `optipng`, and `svgo`) under the hood to
-reduce file sizes without sacrificing quality.
+PNG, SVG, along with PDF documents. It uses best-in-class utilities (`jpegtran`, `optipng`, `svgo`,
+and `ghostscript`) under the hood to reduce file sizes without sacrificing quality.
 
 Perfect for frontend developers, designers, or anyone looking to speed up web performance by
-compressing images safely.
+compressing images and documents safely.
 
 ## Features
 
-- Losslessly compresses `.jpg`, `.png`, and `.svg` files.
+- Losslessly compresses `.jpg`, `.png`, `.svg`, and `.pdf` files.
 - Automatically chooses the right optimization method for each format.
 - Only replaces files if the optimized version is smaller.
 - Simple command-line interface.
@@ -20,26 +20,28 @@ compressing images safely.
 - `jpegtran`
 - `optipng`
 - `svgo`
+- `ghostscript`
 
 ## Usage
 
 ```bash
-./compressor.py <image1> <image2> ... <imageN>
+./compressor.py <file1> <file2> ... <fileN>
 ```
 
 ## Supported formats
 
-| Format                                          | Tool       |
-|-------------------------------------------------|------------|
-| `.jpg`, `.jpeg`                                 | `jpegtran` |
-| `.png`, `.bmp`, `.gif`, `.pnm`, `.tif`, `.tiff` | `optipng`  |
-| `.svg`                                          | `svgo`     |
+| Format                                          | Tool          |
+|-------------------------------------------------|---------------|
+| `.jpg`, `.jpeg`                                 | `jpegtran`    |
+| `.png`, `.bmp`, `.gif`, `.pnm`, `.tif`, `.tiff` | `optipng`     |
+| `.svg`                                          | `svgo`        |
+| `.pdf`                                          | `ghostscript` |
 
 ## Notes
 
 - Files are only replaced if the optimized version is smaller.
 - Unsupported file formats will result in an error.
-- This tool is format-aware, you can safely batch multiple image types at once.
+- This tool is format-aware, you can safely batch multiple image/document types at once.
 
 ## License
 
