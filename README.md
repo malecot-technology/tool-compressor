@@ -1,6 +1,6 @@
-# Compressor
+# Crunch
 
-**Compressor** is a command-line tool for losslessly optimizing common image formats including JPEG,
+**Crunch** is a command-line tool for losslessly optimizing common image formats including JPEG,
 PNG, SVG, along with PDF documents. It uses best-in-class utilities (`jpegtran`, `optipng`, `svgo`,
 and `ghostscript`) under the hood to reduce file sizes without sacrificing quality.
 
@@ -25,7 +25,7 @@ compressing images and documents safely.
 ## Usage
 
 ```bash
-./compressor.py <file1> <file2> ... <fileN>
+./crunch.py <file1> <file2> ... <fileN>
 ```
 
 ## Supported formats
